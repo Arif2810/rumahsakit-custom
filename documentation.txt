@@ -1,0 +1,49 @@
+Aplikasi Rumah Sakit
+Aplikasi dengan 3 level User : Admin, Dokter, Petugas
+
+Admin Role:
+1. CRUD data User
+2. Read halaman pasien
+3. CRUD data Dokter
+4. CRUD data Poliklinik
+5. CRUD data Obat
+6. Read halaman Rekam Medis
+7. Ganti password
+8. Read halaman notifikasi
+  notifikasi akan muncul selama 7 hari
+  - H-7
+  - hari-H (hari / jadwal kontrol ulang)
+
+Dokter Role:
+1. CRUD data pasien
+2. CRUD data Poliklinik
+3. CRUD data Obat
+4. CRUD data Rekam Medis
+  restrictions: CRUD hanya data yg dibuat yang bersangkutan, tidak bisa CRUD data yang dibuat oleh dokter lain
+5. Ganti password
+
+Petugas Role:
+1. CRUD data pasien
+2. CRUD data Poliklinik
+3. CRUD data Obat
+4. Read halaman Rekam Medis
+5. Ganti password
+6. Read halaman notifikasi
+  notifikasi akan muncul selama 7 hari
+  - H-7
+  - hari-H (hari / jadwal kontrol ulang)
+
+Contoh
+=================================
+Username  !  Password  !  Role
+=================================
+admin     !  admin     !  Admin
+---------------------------------
+candra    !  1234      !  Dokter
+---------------------------------
+yola      !  1234      !  Petugas
+=================================
+
+===========================================================================
+*CRUD = Create, Read, Update, Delete
+*Disclaimer: aplikasi mungkin lambat jika data mencapai ratusan atau ribuan.
