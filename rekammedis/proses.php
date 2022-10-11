@@ -12,9 +12,13 @@ if(isset($_POST['add'])){
 	$keluhan = trim(mysqli_real_escape_string($con, $_POST['keluhan']));
 	$dokter = trim(mysqli_real_escape_string($con, $_POST['dokter']));
 	$diagnosa = trim(mysqli_real_escape_string($con, $_POST['diagnosa']));
-	$tgl_kembali = date('Y-m-d', strtotime('+90 days', strtotime($tgl)));
 
-	// $tgl_kembali = trim(mysqli_real_escape_string($con, $_POST['tgl_kembali']));
+	if($_POST['tgl_kembali'] == ''){
+		$tgl_kembali = date('Y-m-d', strtotime('+90 days', strtotime($tgl)));
+	}
+	else{
+		$tgl_kembali = trim(mysqli_real_escape_string($con, $_POST['tgl_kembali']));
+	}
 
 	// insert ke tb_rekammedis
 	mysqli_query($con, "INSERT INTO tb_rekammedis VALUES('$uuid', '$tgl', '$poli', '$pasien', '$keluhan', '$dokter', '$diagnosa', '$tgl_kembali')") or die(mysqli_error($con));
@@ -35,9 +39,8 @@ else if(isset($_POST['edit'])){
 	$keluhan = trim(mysqli_real_escape_string($con, $_POST['keluhan']));
 	$dokter = trim(mysqli_real_escape_string($con, $_POST['dokter']));
 	$diagnosa = trim(mysqli_real_escape_string($con, $_POST['diagnosa']));
-	$tgl_kembali = date('Y-m-d', strtotime('+90 days', strtotime($tgl)));
-
-	// $tgl_kembali = trim(mysqli_real_escape_string($con, $_POST['tgl_kembali']));
+	// $tgl_kembali = date('Y-m-d', strtotime('+90 days', strtotime($tgl)));
+	$tgl_kembali = trim(mysqli_real_escape_string($con, $_POST['tgl_kembali']));
 
 	// update ke tabel rekammedis
 	mysqli_query($con, "UPDATE tb_rekammedis SET tgl_periksa = '$tgl', id_poli = '$poli', id_pasien = '$pasien', keluhan = '$keluhan', dokter = '$dokter', diagnosa = '$diagnosa', tgl_kembali = '$tgl_kembali' WHERE id_rm = '$id'") or die(mysqli_error($con));

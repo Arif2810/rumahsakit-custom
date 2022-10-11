@@ -62,10 +62,11 @@ include_once('../_header.php');
 						} ?>
 					</select>
 				</div>
-				<!-- <div class="form-group">
+				<div class="form-group">
 					<label for="tgl_kembali">Tanggal Kembali</label>
-					<input type="date" name="tgl_kembali" id="tgl_kembali" class="form-control" value="<?= date('Y-m-d') ?>">
-				</div> -->
+					<input type="date" name="tgl_kembali" id="tgl_kembali" class="form-control" value="">
+					<small class="text-danger"><i>* Jika dikosongkan maka tgl kembali di-set 90 hari kedepan!</i></small>
+				</div>
 				<div class="form-group">
 					<input type="reset" name="reset" value="Reset" class="btn btn-default">
 					<input type="submit" name="add" value="Simpan" class="btn btn-success">
