@@ -9,6 +9,18 @@
 </div>
 <hr>
 
+<div class="row">
+	<div class="col-md-12">
+		<center>
+			<h4>GRAFIK KUNJUNGAN PASIEN</h4>
+		</center>
+		<div style="width: 100%;margin: 0px auto;">
+			<canvas id="myChart"></canvas>
+		</div>
+	</div>
+</div>
+<hr>
+
 <?php if($_SESSION['level'] == 'Admin' || $_SESSION['level'] == 'Petugas'){ ?>
 <div class="row">
 	<div class="col-lg-12">
@@ -102,6 +114,72 @@
 		})
 	});
 
+</script>
+
+<script>
+	var ctx = document.getElementById("myChart").getContext('2d');
+	var myChart = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: [
+				<?php 
+					$query2 = "SELECT DISTINCT nama_pasien FROM tb_pasien
+						INNER JOIN tb_rekammedis ON tb_rekammedis.id_pasien = tb_pasien.id_pasien
+						ORDER BY tb_pasien.nama_pasien ASC
+					";
+					$sql_pasien = mysqli_query($con, $query2) or die(mysqli_error($con));
+					while($data = mysqli_fetch_array($sql_pasien)){
+						echo '"'.$data['nama_pasien'] . '"' . ',';
+					}
+				?>
+			],
+			datasets: [{
+				label: '',
+				data: [
+					<?php
+						$sql_pasien = mysqli_query($con, $query2) or die(mysqli_error($con));
+						while($data = mysqli_fetch_array($sql_pasien)){ ?>
+							<?php
+								$nama_pasien = $data['nama_pasien'];
+								$query4 = "SELECT * FROM tb_rekammedis
+									INNER JOIN tb_pasien ON tb_pasien.id_pasien = tb_rekammedis.id_pasien
+									WHERE tb_pasien.nama_pasien = '$nama_pasien'
+									ORDER BY tb_pasien.nama_pasien ASC
+								";
+
+								$jumlah = mysqli_query($con, $query4) or die(mysqli_error($con));
+								echo mysqli_num_rows($jumlah). ',';
+							?>
+
+					<?php } ?>
+				],
+				backgroundColor: [
+					<?php
+						while($data = mysqli_fetch_array($sql_pasien)){
+							echo 'rgba(255, 99, 132, 0.2)'. ',';
+						}	
+					?>
+				],
+				borderColor: [
+					<?php
+						while($data = mysqli_fetch_array($sql_pasien)){
+							echo 'rgba(255,99,132,1)'. ',';
+						}	
+					?>
+				],
+				borderWidth: 1
+			}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero:true
+					}
+				}]
+			}
+		}
+	});
 </script>
 
 

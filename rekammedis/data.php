@@ -41,11 +41,13 @@
 								INNER JOIN tb_poliklinik ON tb_rekammedis.id_poli = tb_poliklinik.id_poli
 								INNER JOIN tb_pasien ON tb_rekammedis.id_pasien = tb_pasien.id_pasien
 								WHERE dokter = '$dokter'
+								ORDER BY tb_rekammedis.tgl_periksa DESC
 							";
 						}else{
 							$query = "SELECT * FROM tb_rekammedis
 								INNER JOIN tb_poliklinik ON tb_rekammedis.id_poli = tb_poliklinik.id_poli
 								INNER JOIN tb_pasien ON tb_rekammedis.id_pasien = tb_pasien.id_pasien
+								ORDER BY tb_rekammedis.tgl_periksa DESC
 							";
 						}
 
@@ -95,7 +97,7 @@
 				columnDefs: [{
 					"searchable": false,
 					"orderable": false,
-					"targets": 8
+					"targets": 7
 				}],
 				"order": [0, "asc"]
 			})

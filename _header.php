@@ -29,6 +29,9 @@ if(!isset($_SESSION['user'])){
 	<script src="<?= base_url(); ?>/_assets/libs/vendor/ckeditor/ckeditor/ckeditor.js"></script>
 	<!-- <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script> -->
 
+	<!-- Script untuk grafik -->
+	<script type="text/javascript" src="<?= base_url(); ?>/_assets/chartjs/Chart.js"></script>
+
 </head>
 <body>
 	<div id="wrapper">
@@ -50,6 +53,10 @@ if(!isset($_SESSION['user'])){
 				
 				<li>
 					<a href="<?= base_url('pasien/data.php') ?>">Data Pasien</a>
+				</li>
+
+				<li>
+					<a href="<?= base_url('kunjungan/data.php') ?>">Data Kunjungan Pasien</a>
 				</li>
 
 				<?php if($_SESSION['level'] == 'Admin'){ ?>
